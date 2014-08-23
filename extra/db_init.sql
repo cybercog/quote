@@ -43,15 +43,16 @@ CREATE TABLE IF NOT EXISTS `quotes` (
   `q_active` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `author_id` int(10) unsigned NOT NULL DEFAULT '0',
   `q_text` text NOT NULL,
+  `q_timestamp` varchar(10) NOT NULL,
   PRIMARY KEY (`q_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы quote.quotes: ~1 rows (приблизительно)
+-- Дамп данных таблицы quote.quotes: ~2 rows (приблизительно)
 DELETE FROM `quotes`;
 /*!40000 ALTER TABLE `quotes` DISABLE KEYS */;
-INSERT INTO `quotes` (`q_id`, `q_active`, `author_id`, `q_text`) VALUES
-	(1, 1, 1, 'fsdfasdfsdaf sdaf kjsadlkjf asdjfl s'),
-	(2, 1, 1, 'Жил бы пёс!');
+INSERT INTO `quotes` (`q_id`, `q_active`, `author_id`, `q_text`, `q_timestamp`) VALUES
+	(1, 1, 1, 'fsdfasdfsdaf sdaf kjsadlkjf asdjfl s', ''),
+	(2, 1, 1, 'Жил бы пёс!', '');
 /*!40000 ALTER TABLE `quotes` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
