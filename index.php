@@ -3,13 +3,16 @@
     header( 'Content-Type: text/html; charset=UTF-8' );
 
     require_once 'Config.php';
-    require_once 'Autoload.php';
+    //require_once 'Autoload.php';
+    require_once 'Db.php';
+    require_once 'Authorization.php';
+
     Db::connect($db);
     // ^^^
 
     session_start();
 
-    if ( $_GET['logoff'] == 1 && $_SESSION['password'] != "" ) {
+    if (isset($_GET['logoff']) && $_GET['logoff'] == 1 && isset($_SESSION['password']) && $_SESSION['password'] != '') {
         Authorization::logoff();
     }
 
@@ -17,7 +20,7 @@
 
 
     // If we trying to add new Quote
-    if ( $_GET['add_quote'] == 1 && $_POST['try_add'] == 1 && $_SESSION['password'] == $secured_password ) {
+    if ( isset($_GET['add_quote']) && $_GET['add_quote'] == 1 && isset($_POST['try_add']) && $_POST['try_add'] == 1 && isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
     
         $quote_text = trim($_POST['quote_text']);
         $author_id = $_POST['author'];
@@ -45,7 +48,7 @@
             Navigation::Redirect();
         }
     }
-    elseif ( $_GET['add_author'] == 1 && $_POST['try_add'] == 1 && $_SESSION['password'] == $secured_password ) {
+    elseif (isset($_GET['add_author']) && isset($_GET['add_author']) && $_GET['add_author'] == 1 && isset($_POST['try_add']) && $_POST['try_add'] == 1 && isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
             
         $author_name = trim($_POST['author_name']);
         $author_fullname = trim($_POST['author_fullname']);
@@ -102,7 +105,7 @@
         
         <?php
             // Controllers template
-            if ( $_SESSION['password'] == $secured_password ) {
+            if ( isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
                 echo '
                         <div>
                             <a href="?add_quote=1">Добавить цитату</a>
@@ -112,7 +115,7 @@
             }
         
             // Authorization template
-            if ( $_SESSION['password'] != $secured_password ) {
+            if ( isset($_SESSION['password']) && $_SESSION['password'] != $secured_password ) {
                 echo '
                     <div id="auth">
                         <form method="post">
@@ -127,7 +130,7 @@
             }
 
             // Let's check, if we want to add quotes!
-            if ( $_GET['add_quote'] == 1 && $_SESSION['password'] == $secured_password ) {
+            if (isset($_GET['add_quote']) && $_GET['add_quote'] == 1 && isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
                 
                 $q = Db::query("
                                         SELECT
@@ -194,7 +197,7 @@
         <?php
             }
             // Or maybe we we are going to add new authors!
-            elseif ( $_GET['add_author'] == 1 && $_SESSION['password'] == $secured_password ) {
+            elseif ( isset($_GET['add_author']) && $_GET['add_author'] == 1 && isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
             
             
         ?>
@@ -202,7 +205,7 @@
                 <div id="wrapper">
                     <div class="refresh"><a href="."><img src="images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
                     <?php
-                        if ( $_SESSION['password'] == $secured_password ) {
+                        if ( isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
                             echo '
                                     <div class="quote_add float-right">
                                         <a href="?add_quote=1">
@@ -289,7 +292,7 @@
                 <div id="wrapper">
                     <div class="refresh"><a href="."><img src="images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
                     <?php
-                        if ( $_SESSION['password'] == $secured_password ) {
+                        if ( isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
                             echo '
                                     <div class="quote_add float-right">
                                         <a href="?add_quote=1">

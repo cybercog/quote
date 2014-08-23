@@ -1,11 +1,11 @@
-<?
+<?php
 
 class Authorization
 {
     public static function check($access)
     {
         $secured_password = sha1(md5($access['password']));
-        if ( $_POST['password'] != "" ) {
+        if ( isset($_POST['password']) && $_POST['password'] != "" ) {
             $posted_password = sha1(md5($_POST['password']));
 
             if ( $secured_password == $posted_password ) {
@@ -30,5 +30,3 @@ class Authorization
         return true;
     }
 }
-
-?>

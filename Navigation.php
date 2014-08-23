@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Navigation
 {
@@ -26,5 +26,3 @@ class Navigation
         return true;
     }
 }
-
-?>
