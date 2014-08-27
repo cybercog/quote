@@ -21,12 +21,12 @@
 
     // If we trying to add new Quote
     if ( isset($_GET['add_quote']) && $_GET['add_quote'] == 1 && isset($_POST['try_add']) && $_POST['try_add'] == 1 && isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
-    
+
         $quote_text = trim($_POST['quote_text']);
         $author_id = $_POST['author'];
-    
-        if ( $quote_text != "" && $author_id > 0 ) {           
-        
+
+        if ( $quote_text != "" && $author_id > 0 ) {
+
             Db::query("
                            INSERT INTO
                                             `quotes`
@@ -49,15 +49,15 @@
         }
     }
     elseif (isset($_GET['add_author']) && isset($_GET['add_author']) && $_GET['add_author'] == 1 && isset($_POST['try_add']) && $_POST['try_add'] == 1 && isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
-            
+
         $author_name = trim($_POST['author_name']);
         $author_fullname = trim($_POST['author_fullname']);
         $author_bio = trim($_POST['author_bio']);
         $author_born = trim($_POST['author_born']);
         $author_died = trim($_POST['author_died']);
-        
+
         $author_name == "" ? $errors['author_name'] = "empty_value" : $author_name;
-        
+
         if ( count($errors) == 0 ) {
             print $author_bio;
         /*
@@ -115,7 +115,7 @@
             }
         
             // Authorization template
-            if ( isset($_SESSION['password']) && $_SESSION['password'] != $secured_password ) {
+            if ( ! isset($_SESSION['password']) && $_SESSION['password'] != $secured_password ) {
                 echo '
                     <div id="auth">
                         <form method="post">
