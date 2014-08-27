@@ -88,13 +88,11 @@
 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<!doctype html>
+<html>
     <head>
-        <title>Quoter v0.2</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Quoter</title>
+        <meta charset="utf-8" />
         <link href="styles/main.css" rel="stylesheet" type="text/css" media="screen" />
         <script type="text/javascript" src="scripts/interface.js"></script>
     </head>
@@ -107,7 +105,7 @@
             // Controllers template
             if ( isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
                 echo '
-                        <div>
+                        <div class="menu">
                             <a href="?add_quote=1">Добавить цитату</a>
                             <a href="?add_author=1">Добавить автора</a>
                         </div>
@@ -162,28 +160,30 @@
                 <!-- START. ADD QUOTE WRAPPER. -->
                 <div id="wrapper">
                     <div class="refresh"><a href="."><img src="images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
+                    <!--
                     <div class="quote_add float-right">
                         <span class="active">
                             <img src="images/refresh.gif" alt="Обновить" />
                             <span class="link">Добавить цитату</span>
                         </span>
                     </div>
+                    -->
                     <form method="post">
                         <input type="hidden" name="try_add" value="1" />
                         <blockquote>
-                                <textarea class="quote_text w-100" name="quote_text"></textarea>
-                                <div class="button_row align-right">
-                                    <input type="submit" class="button" value="Добавить цитату!" />
-                                </div>
+                            <textarea class="quote_text w-100" name="quote_text"></textarea>
+                            <div class="button_row align-right">
+                                <input type="submit" class="button" value="Добавить цитату!" />
+                            </div>
                         </blockquote>
                         <div class="author">
                             <label for="author">Автор цитаты:</label>
                             <select name="author" id="author">
                                 <option class="selected" selected="selected" disabled="disabled" value="0">Выберите автора цитаты</option>
                                 <?php
-                                    foreach ( $authors_data as $key => $value ) {
-                                        echo '<option value="'. $value['id'] .'">'. $value['name'] .'</option>';
-                                    }
+                                foreach ( $authors_data as $key => $value ) {
+                                    echo '<option value="'. $value['id'] .'">'. $value['name'] .'</option>';
+                                }
                                 ?>
                             </select>
                             <div>
@@ -193,18 +193,16 @@
                     </form>
                 </div>
                 <!-- END. ADD QUOTE WRAPPER. -->
-
-        <?php
+            <?php
             }
             // Or maybe we we are going to add new authors!
             elseif ( isset($_GET['add_author']) && $_GET['add_author'] == 1 && isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
-            
-            
-        ?>
+            ?>
                 <!-- START. ADD AUTHOR TEMPLATE. -->
                 <div id="wrapper">
                     <div class="refresh"><a href="."><img src="images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
                     <?php
+                        /*
                         if ( isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
                             echo '
                                     <div class="quote_add float-right">
@@ -215,6 +213,7 @@
                                     </div>
                                     ';
                         }
+                        */
                     ?>
                     <form method="post" onsubmit='return defaultChecks()'>
                         <input type="hidden" name="try_add" value="1" />
@@ -292,6 +291,7 @@
                 <div id="wrapper">
                     <div class="refresh"><a href="."><img src="images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
                     <?php
+                        /*
                         if ( isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
                             echo '
                                     <div class="quote_add float-right">
@@ -302,6 +302,7 @@
                                     </div>
                                     ';
                         }
+                        */
                     ?>
                     <blockquote>
                         &ldquo;<?php print $quote_text; ?>&rdquo;
@@ -327,7 +328,9 @@
         
         
         <div id="footer">
-            <div class="copyright">Powered by <a href="http://wmcc.su/">WiseMon's  &ldquo;CyberCog&rdquo;</a> v0.2</div>
+            <p class="copyright">
+                WiseMon's <a href="http://cybercog.su/">&laquo;CyberCog&raquo;</a>
+            </p>
         </div>
     </body>
 </html>
