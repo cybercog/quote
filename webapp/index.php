@@ -93,13 +93,13 @@
     <head>
         <title>Quoter</title>
         <meta charset="utf-8" />
-        <link href="styles/main.css" rel="stylesheet" type="text/css" media="screen" />
-        <script type="text/javascript" src="scripts/interface.js"></script>
+        <link href="../styles/main.css" rel="stylesheet" type="text/css" media="screen" />
+        <script type="text/javascript" src="../scripts/interface.js"></script>
     </head>
     
     <body>
-        <img src="images/bg_body.gif" alt="Body background" class="hidden" />
-        <div id="logo"><a href="."><img src="images/logo.gif" alt="Цитатник" /></a></div>
+        <img src="../images/bg_body.gif" alt="Body background" class="hidden" />
+        <div id="logo"><a href="../"><img src="../images/logo.gif" alt="Цитатник" /></a></div>
         
         <?php
             // Controllers template
@@ -113,7 +113,7 @@
             }
         
             // Authorization template
-            if ( ! isset($_SESSION['password']) && $_SESSION['password'] != $secured_password ) {
+            if ( ! isset($_SESSION['password']) || $_SESSION['password'] != $secured_password ) {
                 echo '
                     <div id="auth">
                         <form method="post">
@@ -159,7 +159,7 @@
             
                 <!-- START. ADD QUOTE WRAPPER. -->
                 <div id="wrapper">
-                    <div class="refresh"><a href="."><img src="images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
+                    <div class="refresh"><a href="../"><img src="../images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
                     <!--
                     <div class="quote_add float-right">
                         <span class="active">
@@ -200,7 +200,7 @@
             ?>
                 <!-- START. ADD AUTHOR TEMPLATE. -->
                 <div id="wrapper">
-                    <div class="refresh"><a href="."><img src="images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
+                    <div class="refresh"><a href="../"><img src="../images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
                     <?php
                         /*
                         if ( isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
@@ -224,7 +224,7 @@
                             <input type="text" class="field w-400p" name="author_name" value="Сокращённое имя автора" onFocus="clearText(this)" onBlur="restoreText(this)" />
                         </div>     
                         <div class="about_author">
-                            <img class="popup-arrow" src="images/arrow_big-top.gif" alt="^" />
+                            <img class="popup-arrow" src="../images/arrow_big-top.gif" alt="^" />
                             <h3 class="weight-normal">
                                 <input type="text" class="field w-100" name="author_fullname" value="Полное имя автора" onFocus="clearText(this)" onBlur="restoreText(this)" />
                             </h3>
@@ -289,7 +289,7 @@
         
                 <!-- START. SHOW QUOTE WRAPPER. -->
                 <div id="wrapper">
-                    <div class="refresh"><a href="."><img src="images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
+                    <div class="refresh"><a href="../"><img src="../images/refresh.gif" alt="Обновить" /><span class="link">Случайная цитата</span></a></div>
                     <?php
                         /*
                         if ( isset($_SESSION['password']) && $_SESSION['password'] == $secured_password ) {
@@ -311,7 +311,7 @@
                         <a href="javascript:void(0);"><?php print $author_name; ?></a>
                     </div>            
                     <div class="about_author">
-                        <img class="popup-arrow" src="images/arrow_big-top.gif" alt="^" />
+                        <img class="popup-arrow" src="../images/arrow_big-top.gif" alt="^" />
                         <h3 class="weight-normal"><?php print $author_fullname; ?></h3>
                         <h5 class="weight-normal"><?php print $author_living; ?></h5>
                         <p class="author_bio">
